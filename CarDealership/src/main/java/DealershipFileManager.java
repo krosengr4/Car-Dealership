@@ -6,31 +6,28 @@ public class DealershipFileManager {
 
     public static String filePath = "CarDealership/src/main/resources/car-inventory.csv";
 
-    public ArrayList<Dealership> getDealership() {
+    public Dealership getDealership() {
+        Dealership dealership = new Dealership();
 
-        ArrayList<Dealership> allDealerships = new ArrayList<>();
         try {
-
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+
             String input;
-
             while ((input = bufferedReader.readLine()) != null) {
-
                 String[] lineParts = input.split("\\|");
+
                 if (lineParts.length > 3 || input.isEmpty()) {
                     continue;
                 }
 
-                Dealership dealership = new Dealership(lineParts[0], lineParts[1], lineParts[2]);
-
-                allDealerships.add(dealership);
+                dealership.setName(lineParts[0]);
+                dealership.setAddress(lineParts[1]);
+                dealership.setPhoneNumber(lineParts[2]);
             }
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        return allDealerships;
+        return dealership;
     }
 
     public void saveDealership(Dealership dealership) {
