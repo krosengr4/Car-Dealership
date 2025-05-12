@@ -5,10 +5,8 @@ import java.util.ArrayList;
 public class UserInterface {
 
     Dealership dealership;
-//    UserInterface();
 
     public void display() {
-
         boolean ifContinue = true;
 
         while (ifContinue) {
@@ -17,10 +15,8 @@ public class UserInterface {
             switch (userMenuChoice) {
                 case "7" -> processAllVehiclesRequest();
                 case "99" -> ifContinue = false;
-
             }
         }
-
     }
 
     private String menuChoice() {
@@ -48,10 +44,14 @@ public class UserInterface {
     }
 
     private void displayVehicles(ArrayList<Vehicle> vehicles) {
-        for (Vehicle vehicle : vehicles) {
-            System.out.printf("VIN: %d | Year: %d | Make: %s | Model: %s | Color: %s | Total Mileage: %d " +
-                            "| Price: $%.2f", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(),
-                    vehicle.getColor(), vehicle.getOdometer(),vehicle.getPrice());
+        if (vehicles.isEmpty()) {
+            System.out.println("There are no vehicles...");
+        } else {
+            for (Vehicle vehicle : vehicles) {
+                System.out.printf("VIN: %d | Year: %d | Make: %s | Model: %s | Color: %s | Total Mileage: %d " +
+                                "| Price: $%.2f", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(),
+                        vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            }
         }
     }
 
