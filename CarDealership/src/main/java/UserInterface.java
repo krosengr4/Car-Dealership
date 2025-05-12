@@ -62,5 +62,15 @@ public class UserInterface {
         displayVehicles(allVehicles);
     }
 
+    private void processGetByPriceRequest() {
+        int userMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum price: "));
+        int userMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum price: "));
 
+        ArrayList<Vehicle> priceRangeVehicles = dealership.getVehiclesByPrice(userMin, userMax);
+        if (priceRangeVehicles.isEmpty()) {
+            System.out.println("There are no vehicles within that price range...");
+        } else {
+            displayVehicles(priceRangeVehicles);
+        }
+    }
 }
