@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Dealership {
@@ -46,41 +47,31 @@ public class Dealership {
     //endregion
 
     public ArrayList<Vehicle> getVehiclesByPrice(int min, int max) {
-        inventory = new ArrayList<>();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(DealershipFileManager.filePath));
-            String input;
+        ArrayList<Vehicle> inventory = getAllVehicles();
+        ArrayList<Vehicle> vehiclesByPrice = new ArrayList<>();
 
-            while ((input = br.readLine()) != null) {
-                String[] lineParts = input.split("\\|");
-
-                if (lineParts.length < 5 || input.isEmpty()) {
-                    continue;
-                }
-
-                int vin = Integer.parseInt(lineParts[0]);
-                int year = Integer.parseInt(lineParts[1]);
-                String make = lineParts[2];
-                String model = lineParts[3];
-                String vehicleType = lineParts[4];
-                String color = lineParts[5];
-                int odometer = Integer.parseInt(lineParts[6]);
-                double price = Double.parseDouble(lineParts[7]);
-
-                if (min < price && max > price) {
-                    Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-                    inventory.add(vehicle);
-                }
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() > min && vehicle.getPrice() < max) {
+                vehiclesByPrice.add(vehicle);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
-        return inventory;
+
+        return vehiclesByPrice;
     }
 
     public ArrayList<Vehicle> getVehicleByMakeModel(String make, String model) {
-        return null;
+
+        ArrayList<Vehicle> inventory = getAllVehicles();
+        ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<>();
+
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                vehiclesByMakeModel.add(vehicle);
+            }
+        }
+
+        return vehiclesByMakeModel;
     }
 
     public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
@@ -141,5 +132,36 @@ public class Dealership {
 
     }
 
+//        inventory = new ArrayList<>();
+//
+//        try {
+//            BufferedReader br = new BufferedReader(new FileReader(DealershipFileManager.filePath));
+//            String input;
+//
+//            while ((input = br.readLine()) != null) {
+//                String[] lineParts = input.split("\\|");
+//
+//                if (lineParts.length < 5 || input.isEmpty()) {
+//                    continue;
+//                }
+//
+//                int vin = Integer.parseInt(lineParts[0]);
+//                int year = Integer.parseInt(lineParts[1]);
+//                String make = lineParts[2];
+//                String model = lineParts[3];
+//                String vehicleType = lineParts[4];
+//                String color = lineParts[5];
+//                int odometer = Integer.parseInt(lineParts[6]);
+//                double price = Double.parseDouble(lineParts[7]);
+//
+//                if (min < price && max > price) {
+//                    Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+//                    inventory.add(vehicle);
+//                }
+//            }
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//        return inventory;
 
 }

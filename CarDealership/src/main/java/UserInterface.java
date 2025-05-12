@@ -14,6 +14,7 @@ public class UserInterface {
             init();
 
             switch (userMenuChoice) {
+                case "1" -> processGetByPriceRequest();
                 case "7" -> processAllVehiclesRequest();
                 case "99" -> ifContinue = false;
             }
@@ -67,10 +68,17 @@ public class UserInterface {
         int userMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum price: "));
 
         ArrayList<Vehicle> priceRangeVehicles = dealership.getVehiclesByPrice(userMin, userMax);
-        if (priceRangeVehicles.isEmpty()) {
-            System.out.println("There are no vehicles within that price range...");
-        } else {
-            displayVehicles(priceRangeVehicles);
-        }
+
+        displayVehicles(priceRangeVehicles);
+
+    }
+
+    private void processGetByMakeModel() {
+        String userMake = UserPrompt.promptGetUserInput("Enter the make of the vehicle: ");
+        String userModel = UserPrompt.promptGetUserInput("Enter the model of the vehicle: ");
+
+        ArrayList<Vehicle> vehiclesByMakeModel = dealership.getVehicleByMakeModel(userMake, userModel);
+
+        displayVehicles(vehiclesByMakeModel);
     }
 }
