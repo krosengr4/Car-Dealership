@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Dealership {
@@ -68,8 +70,36 @@ public class Dealership {
 
     public ArrayList<Vehicle> getAllVehicles() {
 
+        inventory = new ArrayList<>();
 
-        return new ArrayList<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(DealershipFileManager.filePath));
+            String input;
+
+            while ((input = bufferedReader.readLine()) != null) {
+                String[] lineParts = input.split("\\|");
+
+                if (lineParts.length < 5 || input.isEmpty()) {
+                    continue;
+                }
+                int vin = Integer.parseInt(lineParts[0]);
+                int year = Integer.parseInt(lineParts[1]);
+                String make = lineParts[2];
+                String model = lineParts[3];
+                String vehicleType = lineParts[4];
+                String color = lineParts[5];
+                int odometer = Integer.parseInt(lineParts[6]);
+                double price = Double.parseDouble(lineParts[7]);
+
+                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+
+                inventory.add(vehicle);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return inventory;
     }
 
     public void addVehicle(Vehicle vehicle) {

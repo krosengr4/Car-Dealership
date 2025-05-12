@@ -9,6 +9,8 @@ public class CarDealershipMain {
         UserInterface userInterface = new UserInterface();
         userInterface.display();
 
+        System.out.println("Thank you for using Codeo Cars!\nSee you next time!" + Symbols.smileyFace);
+
     }
 
 }

@@ -11,6 +11,7 @@ public class UserInterface {
 
         while (ifContinue) {
             String userMenuChoice = menuChoice();
+            init();
 
             switch (userMenuChoice) {
                 case "7" -> processAllVehiclesRequest();
@@ -20,7 +21,7 @@ public class UserInterface {
     }
 
     private String menuChoice() {
-        System.out.println("\tOPTIONS");
+        System.out.println("\n\tOPTIONS");
         Design.designLine(20, false);
         System.out.println("""
                 1 - Find Car by Price
@@ -53,6 +54,7 @@ public class UserInterface {
                         vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
             }
         }
+        UserPrompt.pauseApp();
     }
 
     private void processAllVehiclesRequest() {
