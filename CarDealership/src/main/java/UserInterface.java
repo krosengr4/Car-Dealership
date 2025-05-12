@@ -15,6 +15,8 @@ public class UserInterface {
 
             switch (userMenuChoice) {
                 case "1" -> processGetByPriceRequest();
+                case "2" -> processGetByMakeModel();
+                case "3" -> processGetByYear();
                 case "7" -> processAllVehiclesRequest();
                 case "99" -> ifContinue = false;
             }
@@ -70,7 +72,6 @@ public class UserInterface {
         ArrayList<Vehicle> priceRangeVehicles = dealership.getVehiclesByPrice(userMin, userMax);
 
         displayVehicles(priceRangeVehicles);
-
     }
 
     private void processGetByMakeModel() {
@@ -80,5 +81,14 @@ public class UserInterface {
         ArrayList<Vehicle> vehiclesByMakeModel = dealership.getVehicleByMakeModel(userMake, userModel);
 
         displayVehicles(vehiclesByMakeModel);
+    }
+    
+    private void processGetByYear() {
+        int yearMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum year: "));
+        int yearMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum year: "));
+
+        ArrayList<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(yearMin, yearMax);
+
+        displayVehicles(vehiclesByYear);
     }
 }
