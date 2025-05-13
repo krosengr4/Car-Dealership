@@ -17,6 +17,9 @@ public class UserInterface {
                 case "1" -> processGetByPriceRequest();
                 case "2" -> processGetByMakeModel();
                 case "3" -> processGetByYear();
+                case "4" -> processGetByColor();
+                case "5" -> processGetByOdometer();
+                case "6" -> processGetByType();
                 case "7" -> processAllVehiclesRequest();
                 case "99" -> ifContinue = false;
             }
@@ -97,5 +100,20 @@ public class UserInterface {
 
         ArrayList<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(userColor);
         displayVehicles(vehiclesByColor);
+    }
+
+    private void processGetByOdometer() {
+        int odometerMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum amount of miles: "));
+        int odometerMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum amount of miles: "));
+
+        ArrayList<Vehicle> vehiclesByOdometer = dealership.getVehiclesByMileage(odometerMin, odometerMax);
+        displayVehicles(vehiclesByOdometer);
+    }
+
+    private void processGetByType() {
+        String userType = UserPrompt.promptGetUserInput("Enter the type of vehicle (SUV, Truck, etc...): ");
+
+        ArrayList<Vehicle> vehiclesByType = dealership.getVehiclesByType(userType);
+        displayVehicles(vehiclesByType);
     }
 }

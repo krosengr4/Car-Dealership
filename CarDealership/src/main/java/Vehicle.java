@@ -53,6 +53,14 @@ public class Vehicle {
         this.model = model;
     }
 
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
     public String getColor() {
         return color;
     }

@@ -52,7 +52,7 @@ public class Dealership {
         ArrayList<Vehicle> vehiclesByPrice = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getPrice() > min && vehicle.getPrice() < max) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
                 vehiclesByPrice.add(vehicle);
             }
         }
@@ -79,7 +79,7 @@ public class Dealership {
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getYear() > min && vehicle.getYear() < max) {
+            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
                 vehiclesByYear.add(vehicle);
             }
         }
@@ -99,11 +99,27 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByMileage(int min, int max) {
-        return null;
+        inventory = DealershipFileManager.getInventory();
+        ArrayList<Vehicle> vehiclesByMileage = new ArrayList<>();
+
+        for (Vehicle v : inventory) {
+            if (v.getOdometer() >= min && v.getOdometer() <= max) {
+                vehiclesByMileage.add(v);
+            }
+        }
+        return vehiclesByMileage;
     }
 
     public ArrayList<Vehicle> getVehiclesByType(String type) {
-        return null;
+        inventory = DealershipFileManager.getInventory();
+        ArrayList<Vehicle> vehiclesByType = new ArrayList<>();
+
+        for (Vehicle v : inventory) {
+            if (v.getVehicleType().equalsIgnoreCase(type)) {
+                vehiclesByType.add(v);
+            }
+        }
+        return vehiclesByType;
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
