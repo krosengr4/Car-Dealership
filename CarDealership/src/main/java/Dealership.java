@@ -48,7 +48,7 @@ public class Dealership {
 
     public ArrayList<Vehicle> getVehiclesByPrice(int min, int max) {
 
-        ArrayList<Vehicle> inventory = getAllVehicles();
+        inventory = DealershipFileManager.getInventory();
         ArrayList<Vehicle> vehiclesByPrice = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
@@ -62,7 +62,7 @@ public class Dealership {
 
     public ArrayList<Vehicle> getVehicleByMakeModel(String make, String model) {
 
-        ArrayList<Vehicle> inventory = getAllVehicles();
+        inventory = DealershipFileManager.getInventory();
         ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
@@ -75,7 +75,7 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
-        ArrayList<Vehicle> inventory = getAllVehicles();
+        inventory = DealershipFileManager.getInventory();
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
@@ -87,7 +87,15 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByColor(String color) {
-        return null;
+        inventory = DealershipFileManager.getInventory();
+        ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
+
+        for (Vehicle v : inventory) {
+            if (color.equalsIgnoreCase(v.getColor())) {
+                vehiclesByColor.add(v);
+            }
+        }
+        return vehiclesByColor;
     }
 
     public ArrayList<Vehicle> getVehiclesByMileage(int min, int max) {
@@ -99,36 +107,7 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
-
-        inventory = new ArrayList<>();
-
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(DealershipFileManager.filePath));
-            String input;
-
-            while ((input = bufferedReader.readLine()) != null) {
-                String[] lineParts = input.split("\\|");
-
-                if (lineParts.length < 5 || input.isEmpty()) {
-                    continue;
-                }
-                int vin = Integer.parseInt(lineParts[0]);
-                int year = Integer.parseInt(lineParts[1]);
-                String make = lineParts[2];
-                String model = lineParts[3];
-                String vehicleType = lineParts[4];
-                String color = lineParts[5];
-                int odometer = Integer.parseInt(lineParts[6]);
-                double price = Double.parseDouble(lineParts[7]);
-
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-
-                inventory.add(vehicle);
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        inventory = DealershipFileManager.getInventory();
         return inventory;
     }
 
@@ -139,37 +118,4 @@ public class Dealership {
     public void removeVehicle(Vehicle vehicle) {
 
     }
-
-//        inventory = new ArrayList<>();
-//
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader(DealershipFileManager.filePath));
-//            String input;
-//
-//            while ((input = br.readLine()) != null) {
-//                String[] lineParts = input.split("\\|");
-//
-//                if (lineParts.length < 5 || input.isEmpty()) {
-//                    continue;
-//                }
-//
-//                int vin = Integer.parseInt(lineParts[0]);
-//                int year = Integer.parseInt(lineParts[1]);
-//                String make = lineParts[2];
-//                String model = lineParts[3];
-//                String vehicleType = lineParts[4];
-//                String color = lineParts[5];
-//                int odometer = Integer.parseInt(lineParts[6]);
-//                double price = Double.parseDouble(lineParts[7]);
-//
-//                if (min < price && max > price) {
-//                    Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-//                    inventory.add(vehicle);
-//                }
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        return inventory;
-
 }

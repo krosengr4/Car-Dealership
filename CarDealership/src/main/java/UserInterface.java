@@ -91,4 +91,11 @@ public class UserInterface {
 
         displayVehicles(vehiclesByYear);
     }
+
+    private void processGetByColor() {
+        String userColor = UserPrompt.promptGetUserInput("Enter a color: ");
+
+        ArrayList<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(userColor);
+        displayVehicles(vehiclesByColor);
+    }
 }
