@@ -128,6 +128,8 @@ public class Dealership {
     }
 
     public void addVehicle(Vehicle vehicle) {
+        inventory = DealershipFileManager.getInventory();
+
         inventory.add(vehicle);
     }
 
