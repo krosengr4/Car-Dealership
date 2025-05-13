@@ -116,4 +116,10 @@ public class UserInterface {
         ArrayList<Vehicle> vehiclesByType = dealership.getVehiclesByType(userType);
         displayVehicles(vehiclesByType);
     }
+
+    private void processRemoveAVehicle() {
+        int userRemove = Integer.parseInt(UserPrompt.promptGetUserInput("Please enter the VIN of the Vehicle you'd like to remove: "));
+
+        dealership.removeVehicle(userRemove);
+    }
 }

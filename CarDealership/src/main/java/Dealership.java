@@ -131,7 +131,16 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {
+    public void removeVehicle(int VIN) {
+
+        inventory = DealershipFileManager.getInventory();
+
+        for (Vehicle v : inventory) {
+            if (v.getVin() == VIN) {
+                inventory.remove(v);
+                System.out.println("Success! Vehicle was removed.");
+            }
+        }
 
     }
 }
