@@ -88,7 +88,7 @@ public class UserInterface {
 
         displayVehicles(vehiclesByMakeModel);
     }
-    
+
     private void processGetByYear() {
         int yearMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum year: "));
         int yearMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum year: "));

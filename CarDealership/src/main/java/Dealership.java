@@ -131,6 +131,7 @@ public class Dealership {
         inventory = DealershipFileManager.getInventory();
 
         inventory.add(vehicle);
+        DealershipFileManager.writeToFile(inventory);
     }
 
     public void removeVehicle(int VIN) {
@@ -143,6 +144,6 @@ public class Dealership {
                 System.out.println("Success! Vehicle was removed.");
             }
         }
-
+        DealershipFileManager.writeToFile(inventory);
     }
 }

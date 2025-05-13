@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DealershipFileManager {
@@ -66,6 +68,22 @@ public class DealershipFileManager {
 
     public void saveDealership(Dealership dealership) {
         System.out.println("Save Dealership");
+    }
+
+    public static void writeToFile(ArrayList<Vehicle> inventory) {
+
+        try {
+            FileWriter writer = new FileWriter(filePath);
+
+            for (Vehicle v : inventory) {
+                writer.write(v.getVin() + "|" + v.getYear() + "|" + v.getMake() + "|" + v.getModel() + "|" + v.getVehicleType()
+                        + "|" + v.getColor() + "|" + v.getOdometer() + "|" + v.getPrice() + "\n");
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
