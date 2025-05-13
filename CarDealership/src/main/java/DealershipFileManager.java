@@ -75,10 +75,13 @@ public class DealershipFileManager {
         try {
             FileWriter writer = new FileWriter(filePath);
 
+            writer.write("Codeo Cars|2834 Old Codeo Cv|512-685-2489\n");
+
             for (Vehicle v : inventory) {
                 writer.write(v.getVin() + "|" + v.getYear() + "|" + v.getMake() + "|" + v.getModel() + "|" + v.getVehicleType()
                         + "|" + v.getColor() + "|" + v.getOdometer() + "|" + v.getPrice() + "\n");
             }
+            writer.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
