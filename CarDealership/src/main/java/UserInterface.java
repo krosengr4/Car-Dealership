@@ -59,7 +59,7 @@ public class UserInterface {
         } else {
             for (Vehicle vehicle : vehicles) {
                 System.out.printf("VIN: %d | Year: %d | Make: %s | Model: %s | Color: %s | Total Mileage: %d " +
-                                "| Price: $%.2f", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(),
+                                "| Price: $%.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(),
                         vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
             }
         }

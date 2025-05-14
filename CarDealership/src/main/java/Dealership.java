@@ -1,3 +1,5 @@
+import com.pluralsight.utils.UserPrompt;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Array;
@@ -137,13 +139,23 @@ public class Dealership {
     public void removeVehicle(int VIN) {
 
         inventory = DealershipFileManager.getInventory();
+        boolean isCarFound = false;
 
         for (Vehicle v : inventory) {
             if (v.getVin() == VIN) {
                 inventory.remove(v);
-                System.out.println("Success! Vehicle was removed.");
+                isCarFound = true;
+                break;
             }
         }
-        DealershipFileManager.writeToFile(inventory);
+
+        if (isCarFound) {
+            System.out.println("Success! Car was removed");
+            DealershipFileManager.writeToFile(inventory);
+        } else {
+            System.err.println("Could not find car with that VIN...");
+        }
+
+        UserPrompt.pauseApp();
     }
 }
