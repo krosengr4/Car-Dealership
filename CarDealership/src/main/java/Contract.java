@@ -9,13 +9,11 @@ public abstract class Contract {
 
     public Contract(){}
 
-    public Contract(String dateOfContract, String customerName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment) {
+    public Contract(String dateOfContract, String customerName, String customerEmail, String vehicleSold) {
         this.dateOfContract = dateOfContract;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.vehicleSold = vehicleSold;
-        this.totalPrice = totalPrice;
-        this.monthlyPayment = monthlyPayment;
     }
 
     //region getters and setters
@@ -50,21 +48,11 @@ public abstract class Contract {
     public void setVehicleSold(String vehicleSold) {
         this.vehicleSold = vehicleSold;
     }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public double getMonthlyPayment() {
-        return monthlyPayment;
-    }
-
-    public void setMonthlyPayment(double monthlyPayment) {
-        this.monthlyPayment = monthlyPayment;
-    }
     //endregion
+
+    //Abstract methods that will need to be overridden
+    abstract double calculateTotalPrice();
+
+    abstract double calculateMonthlyPayment();
+
 }
