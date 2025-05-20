@@ -52,7 +52,6 @@ public abstract class Contract {
 
     //Abstract methods that will need to be overridden
     abstract double calculateTotalPrice();
-
     abstract double calculateMonthlyPayment();
 
 }

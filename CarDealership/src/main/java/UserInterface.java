@@ -45,7 +45,7 @@ public class UserInterface {
                 99 - Exit
                 """);
 
-        return UserPrompt.promptGetUserInput("What would you like to do?: ").trim();
+        return UserIO.promptGetUserInput("What would you like to do?: ").trim();
     }
 
     private void init() {
@@ -63,7 +63,7 @@ public class UserInterface {
                         vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
             }
         }
-        UserPrompt.pauseApp();
+        UserIO.pauseApp();
     }
 
     private void processAllVehiclesRequest() {
@@ -72,8 +72,8 @@ public class UserInterface {
     }
 
     private void processGetByPriceRequest() {
-        int userMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum price: "));
-        int userMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum price: "));
+        int userMin = Integer.parseInt(UserIO.promptGetUserInput("Enter the minimum price: "));
+        int userMax = Integer.parseInt(UserIO.promptGetUserInput("Enter the maximum price: "));
 
         ArrayList<Vehicle> priceRangeVehicles = dealership.getVehiclesByPrice(userMin, userMax);
 
@@ -81,8 +81,8 @@ public class UserInterface {
     }
 
     private void processGetByMakeModel() {
-        String userMake = UserPrompt.promptGetUserInput("Enter the make of the vehicle: ");
-        String userModel = UserPrompt.promptGetUserInput("Enter the model of the vehicle: ");
+        String userMake = UserIO.promptGetUserInput("Enter the make of the vehicle: ");
+        String userModel = UserIO.promptGetUserInput("Enter the model of the vehicle: ");
 
         ArrayList<Vehicle> vehiclesByMakeModel = dealership.getVehicleByMakeModel(userMake, userModel);
 
@@ -90,8 +90,8 @@ public class UserInterface {
     }
 
     private void processGetByYear() {
-        int yearMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum year: "));
-        int yearMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum year: "));
+        int yearMin = Integer.parseInt(UserIO.promptGetUserInput("Enter the minimum year: "));
+        int yearMax = Integer.parseInt(UserIO.promptGetUserInput("Enter the maximum year: "));
 
         ArrayList<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(yearMin, yearMax);
 
@@ -99,36 +99,36 @@ public class UserInterface {
     }
 
     private void processGetByColor() {
-        String userColor = UserPrompt.promptGetUserInput("Enter a color: ");
+        String userColor = UserIO.promptGetUserInput("Enter a color: ");
 
         ArrayList<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(userColor);
         displayVehicles(vehiclesByColor);
     }
 
     private void processGetByOdometer() {
-        int odometerMin = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the minimum amount of miles: "));
-        int odometerMax = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the maximum amount of miles: "));
+        int odometerMin = Integer.parseInt(UserIO.promptGetUserInput("Enter the minimum amount of miles: "));
+        int odometerMax = Integer.parseInt(UserIO.promptGetUserInput("Enter the maximum amount of miles: "));
 
         ArrayList<Vehicle> vehiclesByOdometer = dealership.getVehiclesByMileage(odometerMin, odometerMax);
         displayVehicles(vehiclesByOdometer);
     }
 
     private void processGetByType() {
-        String userType = UserPrompt.promptGetUserInput("Enter the type of vehicle (SUV, Truck, etc...): ");
+        String userType = UserIO.promptGetUserInput("Enter the type of vehicle (SUV, Truck, etc...): ");
 
         ArrayList<Vehicle> vehiclesByType = dealership.getVehiclesByType(userType);
         displayVehicles(vehiclesByType);
     }
 
     private void processAddAVehicle() {
-        int newVIN = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the VIN of the new vehicle: "));
-        int newYear = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the year of the new vehicle: "));
-        String newMake = UserPrompt.promptGetUserInput("Enter the make of the new vehicle: ");
-        String newModel = UserPrompt.promptGetUserInput("Enter the model of the new vehicle: ");
-        String newType = UserPrompt.promptGetUserInput("Enter the type of the new vehicle: ");
-        String newColor = UserPrompt.promptGetUserInput("Enter the color of the new vehicle: ");
-        int newOdometer = Integer.parseInt(UserPrompt.promptGetUserInput("Enter the odometer reading of the new vehicle: "));
-        double newPrice = Double.parseDouble(UserPrompt.promptGetUserInput("Enter the price of the new vehicle: "));
+        int newVIN = Integer.parseInt(UserIO.promptGetUserInput("Enter the VIN of the new vehicle: "));
+        int newYear = Integer.parseInt(UserIO.promptGetUserInput("Enter the year of the new vehicle: "));
+        String newMake = UserIO.promptGetUserInput("Enter the make of the new vehicle: ");
+        String newModel = UserIO.promptGetUserInput("Enter the model of the new vehicle: ");
+        String newType = UserIO.promptGetUserInput("Enter the type of the new vehicle: ");
+        String newColor = UserIO.promptGetUserInput("Enter the color of the new vehicle: ");
+        int newOdometer = Integer.parseInt(UserIO.promptGetUserInput("Enter the odometer reading of the new vehicle: "));
+        double newPrice = Double.parseDouble(UserIO.promptGetUserInput("Enter the price of the new vehicle: "));
 
         Vehicle newVehicle = new Vehicle(newVIN, newYear, newMake, newModel, newType, newColor, newOdometer, newPrice);
 
@@ -136,7 +136,7 @@ public class UserInterface {
     }
 
     private void processRemoveAVehicle() {
-        int userRemove = Integer.parseInt(UserPrompt.promptGetUserInput("Please enter the VIN of the Vehicle you'd like to remove: "));
+        int userRemove = Integer.parseInt(UserIO.promptGetUserInput("Please enter the VIN of the Vehicle you'd like to remove: "));
 
         dealership.removeVehicle(userRemove);
     }

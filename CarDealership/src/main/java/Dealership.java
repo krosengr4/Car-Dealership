@@ -1,4 +1,4 @@
-import com.pluralsight.utils.UserPrompt;
+import com.pluralsight.utils.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -156,6 +156,6 @@ public class Dealership {
             System.err.println("Could not find car with that VIN...");
         }
 
-        UserPrompt.pauseApp();
+        UserIO.pauseApp();
     }
 }
